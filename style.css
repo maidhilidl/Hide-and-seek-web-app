@@ -1,0 +1,66 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+}
+
+#camera-container {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  margin: 0 auto;
+  background: #000;
+}
+
+#video {
+  width: 640px;
+  height: 480px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Canvas sits exactly on top of the video so boxes line up */
+#overlay {
+  width: 640px;
+  height: 480px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#start-btn, #stop-btn {
+  margin-top: 16px;
+  padding: 14px 32px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+}
+
+#start-btn {
+  background: #2e8b57;
+}
+
+#start-btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+#stop-btn {
+  background: #c0392b;
+}
+
+#count-badge {
+  font-size: 28px;
+  margin-top: 16px;
+  font-weight: bold;
+}
+
+#status {
+  color: #aaa;
+}

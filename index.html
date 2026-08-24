@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hide and Seek Counter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Hide and Seek Counter</h1>
+
+  <div id="camera-container">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="overlay"></canvas>
+  </div>
+
+  <button id="start-btn">Start Camera</button>
+  <button id="stop-btn" style="display:none;">Stop Camera</button>
+
+  <div id="count-badge">People detected: <span id="count">0</span></div>
+
+  <p id="status">Click "Start Camera" to begin.</p>
+
+  <!-- TensorFlow.js core -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+  <!-- COCO-SSD pre-trained model -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
