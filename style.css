@@ -1,66 +1,260 @@
 body {
-  font-family: sans-serif;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
   text-align: center;
-  background: #1a1a1a;
-  color: #fff;
+  background: #fff;
+  color: #263238;
   padding: 20px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.screen {
+  max-width: 500px;
+  margin: 40px auto;
+  animation: screen-in 420ms ease-out both;
+}
+
+.emoji-big {
+  font-size: 80px;
+  margin-bottom: 8px;
+  animation: float 2.8s ease-in-out infinite;
+}
+
+.subtitle {
+  color: #ccc;
+  font-size: 16px;
+}
+
+/* Mode select screen */
+#screen-mode-select {
+  background: linear-gradient(145deg, #fff4e8, #fffdf8);
+  color: #4A1B0C;
+  border: 3px solid #ffd4ad;
+  border-radius: 24px;
+  padding: 40px 24px;
+  box-shadow: 0 14px 0 #ffdcbf, 0 24px 45px rgba(216, 90, 48, 0.15);
+}
+
+.mode-btn {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #D85A30;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 5px 0 #a94020;
+}
+
+.mode-btn:hover, .mode-btn:focus-visible {
+  transform: translateY(-3px) rotate(-1deg);
+  box-shadow: 0 8px 0 #a94020;
+}
+
+.back-btn {
+  display: block;
+  margin: 16px auto 0;
+  padding: 8px 20px;
+  font-size: 14px;
+  background: none;
+  color: #888;
+  border: 1px solid #888;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+/* Screen: Hide and Seek title - pastel purple */
+#screen-title {
+  background: #EEEDFE;
+  color: #26215C;
+  border-radius: 24px;
+  padding: 40px 24px;
+}
+
+#screen-title .subtitle {
+  color: #534AB7;
+}
+
+#screen-title label {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #3C3489;
+}
+
+#time-limit {
+  margin-top: 8px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #AFA9EC;
+  width: 80px;
+  text-align: center;
+}
+
+#title-start-btn, #counting-start-btn {
+  display: block;
+  margin: 24px auto 0;
+  padding: 14px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #639922;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+/* Screen: Counting game title - pastel pink */
+#screen-counting-title {
+  background: #FBEAF0;
+  color: #4B1528;
+  border-radius: 24px;
+  padding: 40px 24px;
+}
+
+#screen-counting-title .subtitle {
+  color: #993556;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Countdown */
+#screen-countdown {
+  padding: 60px 0;
+}
+
+#countdown-number {
+  font-size: 100px;
+  font-weight: bold;
+  color: #7F77DD;
+}
+
+/* Detection screen */
+#screen-detection {
+  max-width: 900px;
 }
 
 #camera-container {
   position: relative;
-  width: 640px;
-  height: 480px;
+  width: min(800px, 100%);
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
   margin: 0 auto;
   background: #000;
+  overflow: hidden;
+  border: 6px solid #263238;
+  border-radius: 18px;
+  box-shadow: 0 10px 0 #b8c9ce, 0 18px 35px rgba(38, 50, 56, 0.2);
 }
 
-#video {
-  width: 640px;
-  height: 480px;
+#video, #overlay {
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  object-fit: contain;
 }
 
-/* Canvas sits exactly on top of the video so boxes line up */
 #overlay {
-  width: 640px;
-  height: 480px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  pointer-events: none;
 }
 
-#start-btn, #stop-btn {
-  margin-top: 16px;
-  padding: 14px 32px;
+#timer-badge {
   font-size: 20px;
+  margin-top: 16px;
+  color: #f1c40f;
+}
+
+#target-badge {
+  font-size: 22px;
+  margin-top: 16px;
+  color: #f39c9c;
   font-weight: bold;
+}
+
+#count-badge {
+  font-size: 28px;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+#stop-btn, #check-btn {
+  margin-top: 16px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  color: #fff;
-}
-
-#start-btn {
-  background: #2e8b57;
-}
-
-#start-btn:disabled {
-  background: #555;
-  cursor: not-allowed;
 }
 
 #stop-btn {
   background: #c0392b;
 }
 
-#count-badge {
-  font-size: 28px;
-  margin-top: 16px;
-  font-weight: bold;
+#check-btn {
+  background: #2e8b57;
 }
 
-#status {
-  color: #aaa;
+/* Results */
+#screen-results {
+  background: #E1F5EE;
+  color: #04342C;
+  border-radius: 20px;
+  padding: 40px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+#confetti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#play-again-btn {
+  margin-top: 20px;
+  padding: 14px 32px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #0F6E56;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+button:focus-visible, input:focus-visible {
+  outline: 4px solid #ffd166;
+  outline-offset: 3px;
+}
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

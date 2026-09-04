@@ -7,19 +7,73 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Hide and Seek Counter</h1>
 
-  <div id="camera-container">
-    <video id="video" autoplay playsinline muted></video>
-    <canvas id="overlay"></canvas>
+  <!-- SCREEN 0: Mode Select -->
+  <div id="screen-mode-select" class="screen">
+    <div class="emoji-big">🎮</div>
+    <h1>Pick a game!</h1>
+    <button class="mode-btn" id="mode-hideseek-btn">🙈 Hide and Seek</button>
+    <button class="mode-btn" id="mode-counting-btn">🔢 Counting Game</button>
   </div>
 
-  <button id="start-btn">Start Camera</button>
-  <button id="stop-btn" style="display:none;">Stop Camera</button>
+  <!-- SCREEN 1a: Hide and Seek Title -->
+  <div id="screen-title" class="screen" style="display:none;">
+    <div class="emoji-big">🙈</div>
+    <h1>Let's play hide and seek!</h1>
+    <p class="subtitle">The camera will count how many friends it can find.</p>
 
-  <div id="count-badge">People detected: <span id="count">0</span></div>
+    <label for="time-limit">Hiding time (seconds):</label>
+    <input type="number" id="time-limit" value="15" min="5" max="60" />
 
-  <p id="status">Click "Start Camera" to begin.</p>
+    <button id="title-start-btn">Start</button>
+    <button class="back-btn" id="back-from-title-btn">Back</button>
+  </div>
+
+  <!-- SCREEN 1b: Counting Game Title -->
+  <div id="screen-counting-title" class="screen" style="display:none;">
+    <div class="emoji-big">🔢</div>
+    <h1>Counting game!</h1>
+    <p class="subtitle" id="counting-target-text">Can you make 4 friends stand together?</p>
+    <button id="counting-start-btn">Start</button>
+    <button class="back-btn" id="back-from-counting-btn">Back</button>
+  </div>
+
+  <!-- SCREEN 2: Countdown (shared) -->
+  <div id="screen-countdown" class="screen" style="display:none;">
+    <p class="subtitle">Get ready!</p>
+    <div id="countdown-number">3</div>
+  </div>
+
+  <!-- SCREEN 3: Detection (shared, adapts to mode) -->
+  <div id="screen-detection" class="screen" style="display:none;">
+    <div id="camera-container">
+      <video id="video" autoplay playsinline muted></video>
+      <canvas id="overlay"></canvas>
+    </div>
+
+    <!-- Hide and seek only -->
+    <div id="timer-badge" style="display:none;">Time left: <span id="time-left">15</span>s</div>
+
+    <!-- Counting game only -->
+    <div id="target-badge" style="display:none;">Target: <span id="target-number">4</span></div>
+
+    <div id="count-badge">Friends found: <span id="count">0</span></div>
+
+    <!-- Hide and seek only -->
+    <button id="stop-btn" style="display:none;">Stop Early</button>
+
+    <!-- Counting game only -->
+    <button id="check-btn" style="display:none;">Check now</button>
+  </div>
+
+  <!-- SCREEN 4: Results (shared) -->
+  <div id="screen-results" class="screen" style="display:none;">
+    <canvas id="confetti-canvas"></canvas>
+    <div class="emoji-big" id="results-emoji">🎉</div>
+    <h1 id="results-text">I found 0 friends!</h1>
+    <button id="play-again-btn">Play Again</button>
+    <button class="back-btn" id="results-mode-select-btn">Pick another game</button>
+  </div>
 
   <!-- TensorFlow.js core -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
